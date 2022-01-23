@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static char	ft_included(char c, char *set)
+static char	ft_included(char c, char const *set)
 {
 	while (*set)
 	{
@@ -26,17 +26,18 @@ static char	ft_included(char c, char *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	start;
 	size_t	len;
 	char	*str;
+	char	*trimmed;
 
-	start = s1;
+	str = (char *)s1;
 	len = ft_strlen(s1);
-	while (ft_included(str, set)
+	while (ft_included(*str, set))
 		str++;
-	while (ft_included(s1[len - 1], set)
+	while (ft_included(s1[len - 1], set))
 		len--;
 	len -= (str - s1);
-	str = (char *)malloc((len + 1) * sizeof(char));
-	return (ft_strlcpy(str, s1[str - s1], len + 1));
+	trimmed = (char *)malloc((len + 1) * sizeof(char));
+	ft_strlcpy(trimmed, s1 + (str - s1), len + 1);
+	return (trimmed);
 }
