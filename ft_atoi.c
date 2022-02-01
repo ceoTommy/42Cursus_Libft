@@ -6,36 +6,35 @@
 /*   By: tford <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 10:49:30 by tford             #+#    #+#             */
-/*   Updated: 2022/01/19 16:55:02 by tford            ###   ########.fr       */
+/*   Updated: 2022/01/25 13:40:43 by tford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int  ft_isspace(char c);
+static int	ft_isspace(char c);
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-    //kinda checked
-    int i;
-    int neg;
-    unsigned int num;
+	int				i;
+	int				neg;
+	unsigned int	num;
 
-    i = 0;
-    neg = 1;
-    num = 0;
-    while(ft_isspace(str[i]))
-        i++;
-    if(str[i] == '+')
-        i++;
-    else if(str[i] == '-')
-    {
-        neg = -1;
-        i++;
-    }
-    while(ft_isdigit(str[i]))
-        num = (num * 10) + (str[i++] - '0');
-    return (((int)num) * neg);
+	i = 0;
+	neg = 1;
+	num = 0;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		neg = -1;
+		i++;
+	}
+	while (ft_isdigit(str[i]))
+		num = (num * 10) + (str[i++] - '0');
+	return (((int)num) * neg);
 }
 
 static int	ft_isspace(char c)

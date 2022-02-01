@@ -6,13 +6,13 @@
 /*   By: tford <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:18:29 by tford             #+#    #+#             */
-/*   Updated: 2022/01/19 16:35:30 by tford            ###   ########.fr       */
+/*   Updated: 2022/01/27 17:56:54 by tford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strchr(const char *str, int c)
+char	*ft_strchr(const char *str, int c)
 {
-	return (ft_memchr(str, c, ft_strlen(str) + 1));
+	return (ft_memchr(str, (char)c, ft_strlen(str) + 1));
 }

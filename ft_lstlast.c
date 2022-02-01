@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tford <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/18 09:45:31 by tford             #+#    #+#             */
-/*   Updated: 2022/01/29 15:21:11 by tford            ###   ########.fr       */
+/*   Created: 2022/01/25 14:05:22 by tford             #+#    #+#             */
+/*   Updated: 2022/01/25 14:05:58 by tford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+t_list	*ft_lstlast(t_list *lst)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < len)
-		((unsigned char *) b)[i++] = (unsigned char) c;
-	return (b);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }

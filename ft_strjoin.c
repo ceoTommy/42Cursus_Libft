@@ -6,7 +6,7 @@
 /*   By: tford <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:24:53 by tford             #+#    #+#             */
-/*   Updated: 2022/01/21 16:06:17 by tford            ###   ########.fr       */
+/*   Updated: 2022/01/28 15:52:38 by tford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,28 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	//unchecked
 	char	*p;
-	size_t s1_size;
-	size_t s2_size;
+	size_t	i;
+	size_t	j;
 
-	s1_size = ft_strlen(s1);
-	s2_size = ft_strlen(s2);
-	p = (char *)malloc((s1_size + s2_size + 1) * sizeof(char));
+	i = ft_strlen(s1) + ft_strlen(s2);
+	p = (char *)malloc((i + 1) * sizeof(char));
 	if (p == NULL)
+	{
 		return (NULL);
-	s1_size = ft_strlcpy(p, s1, s1_size);
-	ft_strlcpy(p + s1_size + 1, s2, s2_size + 1);
+	}
+	i = 0;
+	while (s1[i])
+	{
+		p[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j])
+	{
+		p[i + j] = s2[j];
+		j++;
+	}
+	p[i + j] = '\0';
 	return (p);
 }

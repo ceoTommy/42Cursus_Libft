@@ -6,66 +6,77 @@
 /*   By: tford <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 10:49:30 by tford             #+#    #+#             */
-/*   Updated: 2022/01/19 16:55:02 by tford            ###   ########.fr       */
+/*   Updated: 2022/02/01 16:31:16 by tford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-//ignores first char, changes *start to the end equivalant in the original string
-static char *delim_str(char const **s, char end_c)
+static size_t	word_count(char const *s, char delim)
 {
-    size_t  i;
-    char    *str;
+	size_t	words;
+	size_t	i;
+	char	lookword;
 
-    if (**s == '\0')
-        return (ft_calloc(1, sizeof(char)));
-    i = 1;
-    while((*s)[i] && (*s)[i] != end_c)
-        i++;
-    str = (char *) malloc((i + 1) * sizeof(char));
-    if(str == NULL)
-        return (NULL);
-    ft_strlcpy(str, *s, i + 1);
-    *s += i;
-    return (str);
+	words = 0;
+	lookword = 1;
+	i = 0;
+	while (s[i])
+	{
+		if (lookword && s[i] != delim)
+		{
+			lookword = 0;
+			words++;
+		}
+		else if (!lookword && s[i] == delim)
+		{
+			lookword = 1;
+		}
+		i++;
+	}
+	return (words);
 }
 
-static size_t   wordCount(char const *s, char c)
+//returns new string and also changes s to the next delim in it
+static char	*delim_str(char const **s, char c)
 {
-    size_t  wordcount;
-    size_t  i;
-    
-    if (!*s)
-        return (1);
-    wordcount = 1;
-    i = 1;
-    while (s[i])
-    {
-        if (s[i] == c)
-            wordcount++;
-        i++;
-    }
-    return (wordcount);
+	char	*str;
+	size_t	len;
+
+	len = 0;
+	while (**s && **s == c)
+		(*s)++;
+	while ((*s)[len] && (*s)[len] != c)
+		len++;
+	str = (char *) malloc((len + 1) * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	ft_strlcpy(str, *s, len + 1);
+	*s = *s + len;
+	return (str);
 }
 
-char    **ft_split(char const *str, char c)
+char	**ft_split(char const *s, char c)
 {
-    size_t      words;
-    size_t      i;
-    char        **splits;
-    char const  *s;
+	size_t	words;
+	char	**strs;
+	size_t	i;
 
-    s = str;
-    words = wordCount(s, c);
-    splits = (char **) malloc((words + 1) * sizeof(char *));
-    i = 0;
-    while(i < words)
-    {
-        splits[i] = delim_str(&s, c);
-        i++;
-    }
-    splits[i] = NULL;
-    return (splits);
+	if (s == NULL)
+		return (NULL);
+	words = word_count(s, c);
+	strs = (char **) malloc((words + 1) * sizeof(char *));
+	if (strs == NULL)
+		return (NULL);
+	i = 0;
+	while (i < words)
+	{
+		strs[i] = delim_str(&s, c);
+		if (strs[i] == NULL)
+			return (NULL);
+		i++;
+	}
+	strs[i] = NULL;
+	return (strs);
 }

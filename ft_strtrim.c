@@ -6,7 +6,7 @@
 /*   By: tford <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:07:41 by tford             #+#    #+#             */
-/*   Updated: 2022/01/21 16:52:43 by tford            ###   ########.fr       */
+/*   Updated: 2022/02/01 16:38:49 by tford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 		len--;
 	len -= (str - s1);
 	trimmed = (char *)malloc((len + 1) * sizeof(char));
-	ft_strlcpy(trimmed, s1 + (str - s1), len + 1);
+	ft_strlcpy(trimmed, str, len + 1);
 	return (trimmed);
 }

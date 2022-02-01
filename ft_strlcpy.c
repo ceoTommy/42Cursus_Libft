@@ -6,7 +6,7 @@
 /*   By: tford <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:39:28 by tford             #+#    #+#             */
-/*   Updated: 2022/01/21 16:03:29 by tford            ###   ########.fr       */
+/*   Updated: 2022/01/27 18:42:14 by tford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	size_t	i;
 
 	i = 0;
+	if (dstsize == 0)
+		return (ft_strlen(src));
 	while (src[i] && i < (dstsize - 1))
 	{
 		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = 0;
-	return (i);
+	if (i < dstsize)
+	{
+		dst[i] = '\0';
+	}
+	return (ft_strlen(src));
 }
