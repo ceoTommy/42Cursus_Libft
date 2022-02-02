@@ -6,7 +6,7 @@
 /*   By: tford <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 16:07:41 by tford             #+#    #+#             */
-/*   Updated: 2022/02/01 16:38:49 by tford            ###   ########.fr       */
+/*   Updated: 2022/02/02 12:24:26 by tford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len = ft_strlen(s1);
 	while (ft_included(*str, set))
 		str++;
+	if (*str == '\0')
+		return ((char *) ft_calloc(1, sizeof(char)));
 	while (ft_included(s1[len - 1], set))
 		len--;
 	len -= (str - s1);
