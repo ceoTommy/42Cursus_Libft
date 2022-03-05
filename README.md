@@ -1,4 +1,6 @@
 # Libft
+*Language: C*
+
 ## Functionality
 A libary with many useful C functions.
 
